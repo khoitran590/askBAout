@@ -193,6 +193,8 @@ button {
   font-size: 3rem;
   margin-bottom: 30px;
   font-family: 'Claire Hand', cursive;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .date-gif {
@@ -200,23 +202,131 @@ button {
   max-width: 500px;
 }
 
-.date-info-page {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 20px;
+.liquid-glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 50px rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.6s ease-out;
 }
 
-.date-info-item-large {
-  font-size: 1.5rem;
+.liquid-glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: shimmer 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+}
+
+.date-info-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.info-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 15px;
+  margin-bottom: 0;
+}
+
+.info-row:hover {
+  transform: translateX(5px);
+}
+
+.info-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Claire Hand', cursive;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 1.3rem;
   color: white;
-  text-align: center;
-  margin: 0;
-  line-height: 1.8;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.2);
-  padding: 20px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  font-family: 'Claire Hand', cursive;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .liquid-glass-card {
+    padding: 25px 20px;
+    border-radius: 25px;
+  }
+  
+  .date-details-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .date-gif {
+    max-width: 300px;
+    margin-bottom: 30px;
+  }
+  
+  .info-row {
+    padding: 10px 15px;
+  }
+  
+  .info-row:not(:last-child) {
+    padding-bottom: 12px;
+  }
+  
+  .info-label {
+    font-size: 0.8rem;
+  }
+  
+  .info-value {
+    font-size: 1.1rem;
+  }
 }
 

@@ -6,8 +6,8 @@ function DateDetails() {
   const dateInfo = {
     time: 'Anytime the lady is available',
     date: 'Saturday, November 29, 2025',
-    dressCode: 'Anything that can capture your beauty to the fullest',
-    activity: 'Pottery class and then a dinner night at a restaurant'
+    dressCode: 'Is there a dress code when you are this pretty?',
+    activity: 'A secret activity, then a dinner night and a walk with the lady at the beach'
   }
 
   useEffect(() => {
@@ -54,11 +54,25 @@ function DateDetails() {
           alt="Celebration" 
           className="gif-image date-gif"
         />
-        <div className="date-info-page">
-          <p className="date-info-item-large">Time: {dateInfo.time}</p>
-          <p className="date-info-item-large">Date: {dateInfo.date}</p>
-          <p className="date-info-item-large">Dress code: {dateInfo.dressCode}</p>
-          <p className="date-info-item-large">Activity: {dateInfo.activity}</p>
+        <div className="liquid-glass-card">
+          <div className="date-info-card">
+            <div className="info-row">
+              <span className="info-label">Time</span>
+              <span className="info-value">{dateInfo.time}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Date</span>
+              <span className="info-value">{dateInfo.date}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Dress Code</span>
+              <span className="info-value">{dateInfo.dressCode}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Activity</span>
+              <span className="info-value">{dateInfo.activity}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
