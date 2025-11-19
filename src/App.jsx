@@ -1,52 +1,16 @@
 import { useState, useRef } from 'react'
-import confetti from 'canvas-confetti'
+import { useNavigate } from 'react-router-dom'
 import './App.css'
 
 function App() {
   const [noButtonPosition, setNoButtonPosition] = useState({ x: null, y: null })
-  const [showPopup, setShowPopup] = useState(true)
-  const [showDatePopup, setShowDatePopup] = useState(false)
-  const [dateInfo, setDateInfo] = useState({
-    time: '',
-    date: '',
-    dressCode: 'Anything that can capture your beauty to the fullest'
-  })
+  const [showPopup, setShowPopup] = useState(false)
   const noButtonRef = useRef(null)
+  const navigate = useNavigate()
 
   const handleYesClick = () => {
-    // Create confetti effect
-    const duration = 3000
-    const animationEnd = Date.now() + duration
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 }
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min
-    }
-
-    const interval = setInterval(function() {
-      const timeLeft = animationEnd - Date.now()
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval)
-      }
-
-      const particleCount = 50 * (timeLeft / duration)
-      
-      // Launch from both sides
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-      })
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-      })
-    }, 250)
-
-    // Show date popup
-    setShowDatePopup(true)
+    // Navigate to date details page
+    navigate('/date-details')
   }
 
   const moveNoButton = () => {
@@ -86,10 +50,6 @@ function App() {
     setShowPopup(false)
   }
 
-  const closeDatePopup = () => {
-    setShowDatePopup(false)
-  }
-
   return (
     <div className="app">
       {showPopup && (
@@ -102,20 +62,13 @@ function App() {
           </div>
         </div>
       )}
-      {showDatePopup && (
-        <div className="popup-overlay" onClick={closeDatePopup}>
-          <div className="popup-content date-popup-content" onClick={(e) => e.stopPropagation()}>
-            <button className="popup-close" onClick={closeDatePopup}>×</button>
-            <div className="date-info">
-              <p className="date-info-item">Time: {dateInfo.time}</p>
-              <p className="date-info-item">Date: {dateInfo.date}</p>
-              <p className="date-info-item">Dress code: {dateInfo.dressCode}</p>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="container">
         <h1>Will you accept?</h1>
+        <img 
+          src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGk0ejQ3eWtidmVlZ3V1bzB2Zndtc2cwZGs4NXdneThvd2luZmlxcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8QbwUh40Hl96yMgvOx/giphy.gif" 
+          alt="Accept invitation" 
+          className="gif-image"
+        />
         <div className="buttons">
           <button 
             className="yes-btn" 
