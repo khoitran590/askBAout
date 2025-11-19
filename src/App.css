@@ -17,6 +17,7 @@ h1 {
   margin-bottom: 30px;
   font-size: 3rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Claire Hand', cursive;
 }
 
 .gif-image {
@@ -60,11 +61,31 @@ button {
 .no-btn {
   background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
   color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, left 0.2s ease, top 0.2s ease;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .no-btn:hover {
   transform: scale(1.05);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  .no-btn {
+    min-width: 80px;
+    min-height: 50px;
+    transition: left 0.15s ease-out, top 0.15s ease-out, transform 0.2s ease;
+  }
+  
+  button {
+    padding: 18px 40px;
+    font-size: 1.3rem;
+  }
+  
+  .buttons {
+    gap: 20px;
+  }
 }
 
 .popup-overlay {
@@ -171,6 +192,7 @@ button {
 .date-details-title {
   font-size: 3rem;
   margin-bottom: 30px;
+  font-family: 'Claire Hand', cursive;
 }
 
 .date-gif {

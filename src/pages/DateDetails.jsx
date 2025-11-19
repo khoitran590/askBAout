@@ -6,7 +6,8 @@ function DateDetails() {
   const dateInfo = {
     time: 'Anytime the lady is available',
     date: 'Saturday, November 29, 2025',
-    dressCode: 'Anything that can capture your beauty to the fullest'
+    dressCode: 'Anything that can capture your beauty to the fullest',
+    activity: 'Pottery class and then a dinner night at a restaurant'
   }
 
   useEffect(() => {
@@ -57,6 +58,7 @@ function DateDetails() {
           <p className="date-info-item-large">Time: {dateInfo.time}</p>
           <p className="date-info-item-large">Date: {dateInfo.date}</p>
           <p className="date-info-item-large">Dress code: {dateInfo.dressCode}</p>
+          <p className="date-info-item-large">Activity: {dateInfo.activity}</p>
         </div>
       </div>
     </div>

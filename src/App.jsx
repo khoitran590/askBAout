@@ -1,12 +1,26 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './App.css'
 
 function App() {
   const [noButtonPosition, setNoButtonPosition] = useState({ x: null, y: null })
   const [showPopup, setShowPopup] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const noButtonRef = useRef(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    // Detect if device is mobile/touch device
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth <= 768
+      setIsMobile(isTouchDevice || isSmallScreen)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleYesClick = () => {
     // Navigate to date details page
@@ -19,21 +33,31 @@ function App() {
     const button = noButtonRef.current
     const rect = button.getBoundingClientRect()
     
-    // Calculate random position within viewport
-    const maxX = window.innerWidth - rect.width - 50
-    const maxY = window.innerHeight - rect.height - 50
+    // Calculate random position within viewport with better margins for mobile
+    const margin = isMobile ? 20 : 50
+    const maxX = window.innerWidth - rect.width - margin
+    const maxY = window.innerHeight - rect.height - margin
     
-    const randomX = Math.random() * (maxX - 50) + 25
-    const randomY = Math.random() * (maxY - 50) + 25
+    const randomX = Math.random() * (maxX - margin) + (margin / 2)
+    const randomY = Math.random() * (maxY - margin) + (margin / 2)
     
     setNoButtonPosition({ x: randomX, y: randomY })
   }
 
   const handleNoHover = () => {
-    moveNoButton()
+    // Only move on hover for desktop devices
+    if (!isMobile) {
+      moveNoButton()
+    }
   }
 
   const handleNoClick = (e) => {
+    e.preventDefault()
+    moveNoButton()
+  }
+
+  const handleNoTouchStart = (e) => {
+    // On mobile, move immediately when touched
     e.preventDefault()
     moveNoButton()
   }
@@ -63,7 +87,7 @@ function App() {
         </div>
       )}
       <div className="container">
-        <h1>Will you accept?</h1>
+        <h1>Will the beautiful lady accept my invitation to another date?</h1>
         <img 
           src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGk0ejQ3eWtidmVlZ3V1bzB2Zndtc2cwZGs4NXdneThvd2luZmlxcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8QbwUh40Hl96yMgvOx/giphy.gif" 
           alt="Accept invitation" 
@@ -81,6 +105,7 @@ function App() {
             className="no-btn" 
             onMouseEnter={handleNoHover}
             onClick={handleNoClick}
+            onTouchStart={handleNoTouchStart}
             style={noButtonStyle}
           >
             No
