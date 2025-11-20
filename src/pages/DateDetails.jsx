@@ -5,9 +5,10 @@ import '../App.css'
 function DateDetails() {
   const dateInfo = {
     time: 'Anytime the lady is available',
-    date: 'Saturday, November 29, 2025',
-    dressCode: 'Is there a dress code when you are this pretty?',
-    activity: 'A secret activity, then a dinner night and a walk with the lady at the beach'
+    date: 'Sunday, November 30, 2025',
+    dressCode: 'Is there even a dress code when you are this pretty?',
+    activity: 'A fun fun fun activity, then a dinner night and a walk with the lady at the beach',
+    location: 'Solstice Restaurant, Irvine'
   }
 
   useEffect(() => {
@@ -71,6 +72,10 @@ function DateDetails() {
             <div className="info-row">
               <span className="info-label">Activity</span>
               <span className="info-value">{dateInfo.activity}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Dinner Location</span>
+              <span className="info-value">{dateInfo.location}</span>
             </div>
           </div>
         </div>

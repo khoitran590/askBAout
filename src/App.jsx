@@ -76,18 +76,8 @@ function App() {
 
   return (
     <div className="app">
-      {showPopup && (
-        <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <button className="popup-close" onClick={closePopup}>×</button>
-            <p className="popup-message">
-              Hello Ms. Pretty, since your beauty and aura has captured my heart I would like to invite you to a date to find out if I can capture yours
-            </p>
-          </div>
-        </div>
-      )}
       <div className="container">
-        <h1>Will the beautiful lady accept my invitation to another date?</h1>
+        <h1>Will the beautiful lady let me take her out on a date again?</h1>
         <img 
           src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGk0ejQ3eWtidmVlZ3V1bzB2Zndtc2cwZGs4NXdneThvd2luZmlxcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8QbwUh40Hl96yMgvOx/giphy.gif" 
           alt="Accept invitation" 
