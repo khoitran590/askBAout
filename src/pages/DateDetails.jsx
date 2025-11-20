@@ -4,8 +4,7 @@ import '../App.css'
 
 function DateDetails() {
   const dateInfo = {
-    time: 'Anytime the lady is available',
-    date: 'Sunday, November 30, 2025',
+    date: '5:30pm on Sunday, November 30, 2025 or anytime the lady is available',
     dressCode: 'Is there even a dress code when you are this pretty?',
     activity: 'A fun fun fun activity, then a dinner night and a walk with the lady at the beach',
     location: 'Solstice Restaurant, Irvine'
@@ -57,10 +56,6 @@ function DateDetails() {
         />
         <div className="liquid-glass-card">
           <div className="date-info-card">
-            <div className="info-row">
-              <span className="info-label">Time</span>
-              <span className="info-value">{dateInfo.time}</span>
-            </div>
             <div className="info-row">
               <span className="info-label">Date</span>
               <span className="info-value">{dateInfo.date}</span>
